@@ -96,3 +96,57 @@ You should receive a JSON reply from OpenAI through your FastAPI app.
 ### ✅ Done!
 
 You now have a production-ready AI agent running on FastAPI + OpenAI, publicly accessible via HTTPS.
+
+---
+
+## 🧪 How to Test
+
+You can test the `/webhook` endpoint (which uses OpenAI) using these methods:
+
+### ✅ 1. Using Postman (Recommended)
+
+1. Open [Postman](https://www.postman.com/)
+2. Set Method: `POST`
+3. URL: `http://localhost:8000/webhook` (or your Render URL)
+4. Headers:
+   - `Content-Type: application/json`
+   - `x-source: test`
+5. Body (raw → JSON):
+```json
+{
+  "message": "give me a quick leg workout"
+}
+```
+6. Click **Send** and check the response.
+
+---
+
+### ✅ 2. Using `curl` (Terminal)
+
+**Local test:**
+```bash
+curl -X POST http://localhost:8000/webhook \
+  -H "Content-Type: application/json" \
+  -H "x-source: test" \
+  -d '{"message": "give me a quick leg workout"}'
+```
+
+**Production (Render):**
+```bash
+curl -X POST https://your-app-name.onrender.com/webhook \
+  -H "Content-Type: application/json" \
+  -H "x-source: test" \
+  -d '{"message": "give me a quick leg workout"}'
+```
+
+---
+
+### ✅ 3. Using the Browser (GET endpoints only)
+
+To confirm your app is running, open these in a browser:
+
+- `http://localhost:8000/` → Should return: `{"status": "AI Agent is running"}`
+- `http://localhost:8000/test` → Should return: `{"status": "The router test works!"}`
+
+> You **cannot test `/webhook` via browser**, since it requires a POST request with a JSON body.
+

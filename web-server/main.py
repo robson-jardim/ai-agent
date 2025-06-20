@@ -1,12 +1,14 @@
 from fastapi import FastAPI, Header
 from pydantic import BaseModel
 from dotenv import load_dotenv
-import openai
 import os
+import openai
+
+from openai import OpenAI
 
 load_dotenv()
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI()
 
@@ -18,7 +20,7 @@ def home():
     return {"status": "AI Agent is running"}
 
 @app.get("/test")
-def home():
+def test():
     return {"status": "The router test works!"}
 
 @app.post("/webhook")
@@ -26,10 +28,10 @@ async def webhook(payload: MessageInput, x_source: str = Header(default="unknown
     user_input = payload.message
     print(f"[{x_source}] Message received: {user_input}")
 
-    # 🔥 GPT-4/3.5 call
+    # ✅ New GPT call using openai>=1.0.0
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-4",  # Or "gpt-3.5-turbo" for lower cost
+        response = client.chat.completions.create(
+            model="gpt-4",  # or "gpt-3.5-turbo"
             messages=[
                 {"role": "system", "content": "You are a helpful fitness assistant. Respond like a coach, motivating and guiding users."},
                 {"role": "user", "content": user_input}
