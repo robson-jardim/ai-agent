@@ -17,6 +17,10 @@ class MessageInput(BaseModel):
 def home():
     return {"status": "AI Agent is running"}
 
+@app.get("/test")
+def home():
+    return {"status": "AI Agent is running"}
+
 @app.post("/webhook")
 async def webhook(payload: MessageInput, x_source: str = Header(default="unknown")):
     user_input = payload.message
