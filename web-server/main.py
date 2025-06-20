@@ -19,7 +19,7 @@ def home():
 
 @app.get("/test")
 def home():
-    return {"status": "AI Agent is running"}
+    return {"status": "The router test works!"}
 
 @app.post("/webhook")
 async def webhook(payload: MessageInput, x_source: str = Header(default="unknown")):
