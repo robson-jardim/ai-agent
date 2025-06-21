@@ -16,11 +16,14 @@ This project is a FastAPI-based AI agent that integrates with OpenAI's GPT API t
 ## 📁 Project Structure
 
 ```
-ai-agent-router/
-├── main.py             # FastAPI app
-├── requirements.txt    # Python dependencies
-├── render.yaml         # Deployment instructions for Render
-└── .env                # Local API keys (not committed)
+ai_agent_router/
+├── main.py               # Entrypoint
+├── router.py             # FastAPI routes
+├── intent_handler.py     # Detect and route intents
+├── gpt_service.py        # OpenAI interaction logic
+├── models.py             # Pydantic models (e.g., MessageInput)
+├── utils.py              # Helper functions
+
 ```
 
 ---
