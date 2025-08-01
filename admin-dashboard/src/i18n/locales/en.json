@@ -1,0 +1,10 @@
+{
+  "dashboard": "Dashboard",
+  "settings": "Settings",
+  "help": "Help",
+  "notifications": "Notifications",
+  "language": "Language",
+  "login": "Login",
+  "logout": "Logout",
+  "welcome": "Welcome to the Admin Panel"
+}

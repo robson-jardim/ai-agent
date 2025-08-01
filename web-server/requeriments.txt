@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-python-dotenv
-sqlalchemy
-psycopg2-binary
-redis
-openai>=1.0.0
-    
-
